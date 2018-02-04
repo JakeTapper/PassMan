@@ -1,3 +1,7 @@
+'''
+Main class for the program. 
+'''
+
 from sys import argv
 from PyQt5.QtWidgets import (QWidget, 
     QLabel, QLineEdit, QGridLayout, QMenu, QApplication, qApp, QPushButton,
@@ -124,12 +128,24 @@ class MainScreen(QWidget):
         self.show()
    
     def addPassword(self, **kwargs):
+        '''
+        Opens the add password screen
+        '''
         addPass = AddPasswordScreen(self)
         addPass.show()
-        if not addPass.password == None:
+        
+        '''
+        TODO: Use this to allow a user to copy the last generated password,
+        even if they forgot to save it
+        '''
+        if not addPass.password == None: 
             self.lastGenerated = addPass.password
 
     def updateButtons(self):
+        '''
+        Updates the buttons that display the current website/applications that
+        have passwords currently saved
+        '''
         for i in range(len(self.buttons)):
             if i+self.scrollPos >= len(self.files):
                 self.buttons[i].setVisible(False)
@@ -138,14 +154,23 @@ class MainScreen(QWidget):
             self.buttons[i].setVisible(True)
 
     def maximize(self, **kwargs):
+        '''
+        Maximizes the window
+        '''
         self.setVisible(True)
         self.showNormal()
 
     def closeEvent(self, event):
+        '''
+        Removes the icon from the tray before the window closes
+        '''
         self.tray.setVisible(False)
         event.accept()
 
     def wheelEvent(self, event):
+        '''
+        Handles mouse wheel events in order to allow scrolling through passwords
+        '''
         steps = round(event.angleDelta().y()/120) * -1
         if steps > 0:
             for _ in range(steps):
@@ -161,6 +186,10 @@ class MainScreen(QWidget):
 
 
     def event(self, event):
+        '''
+        Handles both key input and the window minimizing, or passes the event
+        to the default event handler if it's not one of those
+        '''
         if (event.type() == QEvent.KeyPress):
             #Down arrow
             if event.key() == 16777237: 
@@ -191,9 +220,11 @@ class MainScreen(QWidget):
 if __name__ == '__main__':
     app = QApplication(argv)
 
+    #Checks to be sure that there is a folder for passwords in appdata
     if not dirExists(join(getenv('APPDATA'), 'PassManData')):
             makedirs(join(getenv('APPDATA'), 'PassManData'))
 
+    #Attemps to find the master password hash and open the login window
     Login = None
     try:
         open(join(join(getenv('APPDATA'), 'PassManData'),

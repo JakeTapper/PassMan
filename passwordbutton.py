@@ -1,3 +1,8 @@
+'''
+Class for the password button that show what applications/websites have
+currently saved passwords.
+'''
+
 from PyQt5.QtWidgets import QPushButton, QGraphicsDropShadowEffect, QMessageBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QTimer, Qt
@@ -41,6 +46,10 @@ class PasswordButton(QPushButton):
         self.contextMenu = None
 
     def loadPassword(self, **kwargs):
+        '''
+        Gets the encrypted password that corresponds to the website/application
+        and copies the decrypted password to the clipboard
+        '''
         filename = self.text()
         if (filename == "File not found" or
             filename == "Password copied to clipboard" or 
@@ -70,9 +79,16 @@ class PasswordButton(QPushButton):
             QTimer.singleShot(2000, lambda: self.setText(filename))
 
     def onContextMenu(self, point):
+        '''
+        Handles right clicks
+        '''
         self.contextMenu.exec(self.mapToGlobal(point))
 
     def remove(self, **kwargs):
+        '''
+        Handles removing the password corresponding to the buttons
+        website/application
+        '''
         filename = self.text()
         if (filename == "File not found" or
             filename == "Password copied to clipboard" or 

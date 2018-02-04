@@ -1,3 +1,7 @@
+'''
+The login window class that is opened when the program is first started
+'''
+
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QGridLayout
 from PyQt5.QtCore import Qt, QEvent
 from PyQt5.QtGui import QFont

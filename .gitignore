@@ -1,4 +1,4 @@
-./__pycache__
-./build
-./build.bat
-./env
+__pycache__/
+build/
+env/
+build.bat

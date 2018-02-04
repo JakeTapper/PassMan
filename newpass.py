@@ -1,3 +1,9 @@
+'''
+The class for the window that opens when so saved master password is found. It
+will ask for a new password, check that it is the same in both boxes, and
+saves it to disk
+'''
+
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QGridLayout
 from PyQt5.QtCore import QEvent, Qt
 from PyQt5.QtGui import QFont
@@ -72,6 +78,10 @@ class NewPasswordScreen(QWidget):
         self.show()
 
     def checkPassword(self, **kwargs):
+        '''
+        Checks to be sure that the password boxes match and saves it if
+        they do.
+        '''
         if self.passwordBox0.text() != self.passwordBox1.text():
             self.differentPasswordLabel.setVisible(True)
             return

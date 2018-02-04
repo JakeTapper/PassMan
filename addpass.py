@@ -1,3 +1,8 @@
+'''
+The class that is run when the "New Password" button is pressed. Is a new 
+window that contains a couple of fields, buttons, and check boxes.
+'''
+
 from sys import argv, exit
 from PyQt5.QtWidgets import (QWidget, 
     QLabel, QLineEdit, QGridLayout, QMenu, QApplication, qApp, QPushButton,
@@ -108,6 +113,9 @@ class AddPasswordScreen(QWidget):
 
 
     def savePassword(self, **kwargs):
+        '''
+        Saves the currently entered password
+        '''
         cleanedTitle = ''.join(filter(
             lambda x: x in ascii_letters + digits + ' ', self.userBox.text()))
         if self.passBox.text() == '' or cleanedTitle == '':
@@ -137,6 +145,9 @@ class AddPasswordScreen(QWidget):
                 "<font color='red'>Name already exsists</font>")
 
     def genPassword(self, **kwargs):
+        '''
+        Generates a random password
+        '''
         chars = ''
         chars += ascii_letters if self.lettersRB.isChecked() else ''
         chars += digits if self.digitsRB.isChecked() else ''
@@ -151,6 +162,9 @@ class AddPasswordScreen(QWidget):
         copy(password)
 
     def setState(self, boxName, box):
+        '''
+        Sets the state of the check box when it is pressed
+        '''
         if boxName == 'letters':
             AddPasswordScreen.lettersCheck = box.isChecked()
         if boxName == 'digits':

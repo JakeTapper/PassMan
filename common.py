@@ -1,3 +1,6 @@
+'''
+A set of common helper functions/variables that are used by the rest of the program
+'''
 from PyQt5.QtGui import QColor
 
 def setColor(window, r, g, b):

@@ -1,3 +1,15 @@
+'''
+Setup file using cx_Freeze. NOTE:cx_Freeze is not included in the 
+requirements.txt file because it is not nessicary for running the
+program itself. 
+
+To install cx_Freeze:
+pip install cx_Freeze
+
+To run this file:
+python setup.py build
+'''
+
 import sys
 from cx_Freeze import setup, Executable
 
