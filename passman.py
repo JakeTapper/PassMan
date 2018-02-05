@@ -52,7 +52,6 @@ class MainScreen(QWidget):
         self.tray.activated.connect(self.maximize)
         self.tray.setContextMenu(menu)
         self.tray.show()
-        self.tray.showMessage("Title", "text")
 
         #Buttons
         newPassBtn = QPushButton("New Password")
